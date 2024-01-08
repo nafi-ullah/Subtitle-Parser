@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paragraph Parser</title>
+  <style>
+    /* Define CSS rules here */
+    p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Youtube Subtitle Parse</h1>
+  <textarea id="inputText" rows="10" cols="50" placeholder="Enter youtube subtitles..."></textarea>
+  <br>
+  <button id="parseButton">Parse Paragraph</button>
+  <br>
+  <p><strong>Parsed Paragraph:</strong></p>
+  <p id="parsedParagraph"></p>
+
+  <script>
+    const parseButton = document.getElementById('parseButton');
+    const inputText = document.getElementById('inputText');
+    const parsedParagraph = document.getElementById('parsedParagraph');
+
+    parseButton.addEventListener('click', () => {
+      const input = inputText.value;
+      const sentences = input.split(/\d+:\d+\n/).filter(sentence => sentence.trim() !== '');
+      const paragraph = sentences.join(' ');
+      parsedParagraph.textContent = paragraph;
+    });
+  </script>
+</body>
+</html>

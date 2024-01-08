@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRT Subtitle Parser</title>
+</head>
+<body>
+    <textarea id="srtInput" placeholder="Paste SRT content here"></textarea>
+    <button onclick="extractSentences()">Extract Sentences</button>
+    <div id="output"></div>
+
+    <script>
+        function extractSentences() {
+            const srtInput = document.getElementById("srtInput").value;
+
+            // Define a regular expression pattern to match timestamps (hh:mm:ss,mmm --> hh:mm:ss,mmm)
+            const timestampPattern = /\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}/g;
+
+            // Remove all digits, "-->", colons, and commas, and replace them with spaces
+            const textWithoutDigitsAndTimestamps = srtInput.replace(/\d|-->|:|,/g, ' ').replace(timestampPattern, '');
+
+            // Split the text into sentences
+            const sentences = textWithoutDigitsAndTimestamps.split(/\n/).filter(sentence => sentence.trim() !== '');
+
+            // Join the sentences to form a single string
+            const output = sentences.join(' ');
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.textContent = output;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Subtitle</title>
+    <style>
+        textarea {
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Youtube subtile without formatting</h2>
+    <label for="inputText">Input Text:</label>
+    <textarea id="inputText" cols="20" rows="20"></textarea>
+    <br>
+    <button onclick="executeRegex()">Execute Regex</button>
+
+    <h3>Result:</h3>
+    <div id="result"></div>
+
+    <script>
+        function executeRegex() {
+            const inputText = document.getElementById('inputText').value;
+            const regexResult = inputText.replace(/\d+:\d+\n/g, ''); // Your regular expression here
+            document.getElementById('result').innerText = regexResult;
+        }
+    </script>
+</body>
+</html>
